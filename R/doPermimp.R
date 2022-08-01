@@ -145,10 +145,10 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     
     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
     perror_mean <- apply(perror[ , whichVarIDs, , drop = FALSE], c(2), mean)
-    perror_std <- apply(perror[ , whichVarIDs, , drop = FALSE], c(2), std)
+#     perror_std <- apply(perror[ , whichVarIDs, , drop = FALSE], c(2), std)
     print(perror_mean)
-    print(perror_std)
-    print(perror_mean / perror_std)
+#     print(perror_std)
+#     print(perror_mean / perror_std)
     stop()
 #     perror <- as.data.frame(perror)
     
