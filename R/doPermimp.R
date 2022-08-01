@@ -149,8 +149,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     z_test = perror_mean / perror_std
     fn <- ecdf(z_test)
     p_val <- 1 - fn(z_test)
-    print(p_val)
-    stop()
+    perror_out <- list(perror_mean, p_val)
 #     perror <- as.data.frame(perror)
     
     if(thresholdDiagnostics){
@@ -201,7 +200,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     if(AUC && type == "nominal2") info$errorType <- "AUC"  
     
     # if(scaled) return(ScaledMeanDecreaseAccuracy = colMeans(perror)/apply(perror, 2, sd)) 
-    out <- as.VarImp(perror, 
+    out <- as.VarImp(perror_out, 
                      FUN = mean,
                      type = 'if'(conditional, "Conditional Permutation", "Permutation"),
                      info = info)
