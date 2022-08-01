@@ -146,9 +146,10 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
     perror_mean <- apply(perror, 2, mean)
     perror_std <- apply(perror, 2, sd)
-    print(perror_mean)
-    print(perror_std)
-    print(perror_mean / perror_std)
+    z_test = perror_mean / perror_std
+    fn <- ecdf(z-test)
+    p_val <- 1 - ecdf(z_test)
+    print(p_val)
     stop()
 #     perror <- as.data.frame(perror)
     
