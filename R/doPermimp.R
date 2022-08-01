@@ -144,13 +144,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     } ## end of for (treeNr in 1:ntree)
     
     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
-    perror_mean <- apply(perror, 2, mean)
-    perror_std <- apply(perror, 2, sd)
-    z_test = perror_mean / perror_std
-    fn <- ecdf(z_test)
-    p_val <- 1 - fn(z_test)
-    perror_out <- data.frame(perror_mean, p_val)
-#     perror <- as.data.frame(perror)
+    perror <- as.data.frame(perror)
     
     if(thresholdDiagnostics){
       changeThres <- apply(changeThres[ , whichVarIDs, , drop = FALSE], 2, mean, na.rm = TRUE)
@@ -200,7 +194,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     if(AUC && type == "nominal2") info$errorType <- "AUC"  
     
     # if(scaled) return(ScaledMeanDecreaseAccuracy = colMeans(perror)/apply(perror, 2, sd)) 
-    out <- as.VarImp(perror_out, 
+    out <- as.VarImp(perror, 
                      FUN = mean,
                      type = 'if'(conditional, "Conditional Permutation", "Permutation"),
                      info = info)
