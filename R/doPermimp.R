@@ -144,7 +144,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     } ## end of for (treeNr in 1:ntree)
     
 #     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
-    perror <- as.data.frame(perror)
+#     perror <- as.data.frame(perror)
     
     if(thresholdDiagnostics){
       changeThres <- apply(changeThres[ , whichVarIDs, , drop = FALSE], 2, mean, na.rm = TRUE)
