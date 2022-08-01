@@ -149,7 +149,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     z_test = perror_mean / perror_std
     fn <- ecdf(z_test)
     p_val <- 1 - fn(z_test)
-    perror_out <- list(perror_mean, p_val)
+    perror_out <- data.frame(perror_mean, p_val)
 #     perror <- as.data.frame(perror)
     
     if(thresholdDiagnostics){
