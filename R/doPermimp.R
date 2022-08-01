@@ -144,14 +144,11 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     } ## end of for (treeNr in 1:ntree)
     
     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
-    print('hi')
-    print(dim(perror))
-    perror_mean <- apply(perror[ , whichVarIDs, , drop = FALSE], 2, mean)
-    print('hello')
-#     perror_std <- apply(perror[ , whichVarIDs, , drop = FALSE], c(2), std)
+    perror_mean <- apply(perror, 2, mean)
+    perror_std <- apply(perror, 2, std)
     print(perror_mean)
-#     print(perror_std)
-#     print(perror_mean / perror_std)
+    print(perror_std)
+    print(perror_mean / perror_std)
     stop()
 #     perror <- as.data.frame(perror)
     
