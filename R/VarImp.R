@@ -10,7 +10,15 @@ as.VarImp.data.frame <- function(object, FUN = mean,
                              info = NULL, ...)
 {
    match.fun(FUN)
+   # Add p-values part
+   perror_mean <- apply(object, 2, mean)
+   perror_std <- apply(object, 2, sd)
+   z_test = perror_mean / perror_std
+   fn <- ecdf(z_test)
+   p_val <- 1 - fn(z_test)
+
    out <- list(values = apply(object, 2, FUN, ...),
+               p_val = p_val,
                perTree = object,
                type = match.arg(type),
                info = info)
