@@ -143,7 +143,9 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     if(progressBar) setTxtProgressBar(pBar , treeNr)
     } ## end of for (treeNr in 1:ntree)
     
-#     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
+    perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(2, 3), mean)
+    print(dim(perror))
+    stop()
 #     perror <- as.data.frame(perror)
     
     if(thresholdDiagnostics){
