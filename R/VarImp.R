@@ -11,6 +11,8 @@ as.VarImp.data.frame <- function(object, FUN = mean,
 {
    match.fun(FUN)
    # Add p-values part
+   # perror (ntree x p x nperm)
+   perror <- apply(object, c(2, 3), mean)
    perror_mean <- apply(object, 2, mean)
    perror_std <- apply(object, 2, sd)
    z_test = perror_mean / perror_std
