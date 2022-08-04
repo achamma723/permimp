@@ -18,7 +18,7 @@ as.VarImp.data.frame <- function(object, FUN = mean,
    z_test = perror_mean / perror_std
    p_val = 1 - stats::pnorm(z_test)
 
-   out <- list(values = apply(object, 2, FUN, ...),
+   out <- list(values = apply(perror, 2, FUN, ...),
                p_val = p_val,
                perTree = object,
                type = match.arg(type),
