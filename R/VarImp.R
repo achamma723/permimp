@@ -13,8 +13,8 @@ as.VarImp.data.frame <- function(object, FUN = mean,
    # Add p-values part
    # perror (ntree x p x nperm)
    perror <- apply(object, c(2, 3), mean)
-   perror_mean <- apply(object, 2, mean)
-   perror_std <- apply(object, 2, sd)
+   perror_mean <- apply(perror, 2, mean)
+   perror_std <- apply(perror, 2, sd)
    z_test = perror_mean / perror_std
    p_val = 1 - stats::pnorm(z_test)
 
