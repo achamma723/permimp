@@ -143,8 +143,8 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     if(progressBar) setTxtProgressBar(pBar , treeNr)
     } ## end of for (treeNr in 1:ntree)
     
-#     perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
-#     perror <- as.data.frame(perror)
+    perror <- apply(perror[ , whichVarIDs, , drop = FALSE], c(1, 2), mean)
+    perror <- as.data.frame(perror)
     
     if(thresholdDiagnostics){
       changeThres <- apply(changeThres[ , whichVarIDs, , drop = FALSE], 2, mean, na.rm = TRUE)
@@ -194,7 +194,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     if(AUC && type == "nominal2") info$errorType <- "AUC"  
     
     # if(scaled) return(ScaledMeanDecreaseAccuracy = colMeans(perror)/apply(perror, 2, sd)) 
-    out <- as.VarImp(as.data.frame(perror[ , whichVarIDs, , drop = FALSE]),
+    out <- as.VarImp(perror,
                      FUN = mean,
                      type = 'if'(conditional, "Conditional Permutation", "Permutation"),
                      info = info)
