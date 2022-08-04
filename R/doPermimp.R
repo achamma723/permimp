@@ -194,7 +194,7 @@ doPermimp <- function(object, input, inp, y, OOB, threshold, conditional,
     if(AUC && type == "nominal2") info$errorType <- "AUC"  
     
     # if(scaled) return(ScaledMeanDecreaseAccuracy = colMeans(perror)/apply(perror, 2, sd)) 
-    out <- as.VarImp(perror[ , whichVarIDs, , drop = FALSE], 
+    out <- as.VarImp(as.data.frame(perror[ , whichVarIDs, , drop = FALSE]),
                      FUN = mean,
                      type = 'if'(conditional, "Conditional Permutation", "Permutation"),
                      info = info)
